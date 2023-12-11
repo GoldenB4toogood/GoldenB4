@@ -17,6 +17,7 @@ spawn(function()
                 while task.wait() do
                         for i, v in pairs(game:GetService("Players"):GetChildren()) do
                             if v.Team ~= lplr.Team and IsAlive(v) and IsAlive(lplr) then
+function IsAlive() -- godmode?
                                 if v and v ~= lplr then
                                     local TargetDistance = lplr:DistanceFromCharacter(v.Character:FindFirstChild("HumanoidRootPart").CFrame.p)
                                     if TargetDistance < 25 then
