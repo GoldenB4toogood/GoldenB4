@@ -62,7 +62,7 @@ spawn(function()
             end)
         end
     end
-})shared.RavenB4Completed = true --- REQUIRED!!!!
+})
 
 
 Utility:CreateToggle({
@@ -90,3 +90,4 @@ UIS.InputBegan:Connect(function(input, gameProccess)
 		end
 	end
 end)
+shared.RavenB4Completed = true --- REQUIRED!!!!
