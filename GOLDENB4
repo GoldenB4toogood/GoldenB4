@@ -1,0 +1,4 @@
+shared.RavenB4Started = true --
+shared.RavenConfigName = 'Golden B4' --
+shared.WaterMark = "Golden b4"
+shared.WaterMarkColor = Color3.fromRGB(252,186,3)
