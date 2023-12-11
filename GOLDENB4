@@ -62,7 +62,11 @@ spawn(function()
             end)
         end
     end
-})--Waits until the player is in game
+})
+Utility:CreateToggle({
+    Name = "Fly Script",
+    Callback = function(Callback)
+        if Callback then --Waits until the player is in game
 repeat wait()
 until game.Players.LocalPlayer and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:findFirstChild("Torso") and game.Players.LocalPlayer.Character:findFirstChild("Humanoid")
 local mouse = game.Players.LocalPlayer:GetMouse()
