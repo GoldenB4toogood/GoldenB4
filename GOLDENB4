@@ -62,32 +62,4 @@ spawn(function()
             end)
         end
     end
-})
-
-
-Utility:CreateToggle({
-    Name = "InvisibleExploit",
-    Callback = function(Callback)
-        if Callback then
-UIS.InputBegan:Connect(function(input, gameProccess)
-	if input.KeyCode == Enum.KeyCode.LeftShift and IsLSDown == true and state == "running" and not gameProccess then
-		local Vel = Instance.new("BodyVelocity")
-		Vel.Name = "Velocity"
-		Vel.Parent = script.Parent.Parent:WaitForChild("Torso")
-		Vel.P = 0
-		Vel.Velocity = (HumanoidRootPart.CFrame.LookVector * 100) * Humanoid.WalkSpeed
-		for i = 1, 45 do
-			wait(0.5)
-			Vel.P = Vel.P + i
-		end
-		wait(3)
-		for i = 1, 45  do
-			wait(0.5)
-			Vel.P = Vel.P - i
-		end
-		if Vel.P == 0 then
-			Vel:Destroy()
-		end
-	end
-end)
-shared.RavenB4Completed = true --- REQUIRED!!!!
+})shared.RavenB4Completed = true --- REQUIRED!!!!
