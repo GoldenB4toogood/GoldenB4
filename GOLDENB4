@@ -4,8 +4,11 @@ shared.WaterMark = "Golden b4"
 shared.WaterMarkColor = Color3.fromRGB(252,186,3)
 local RavenConfig = loadstring(game:HttpGet('https://raw.githubusercontent.com/Goldenb4toogood/RavenB4Roblox/main/Raven%20Main%20Loader'))()
 RavenConfig:createnotification("Best config loaded!",5)
-ModuleTest1 = Combat:CreateToggle({
-    Name = "Golden",
+local Players = game:GetService("Players")
+local lplr = Players.LocalPlayer
+local gameCamera = game:GetService("Workspace").CurrentCamera
+Combat:CreateToggle({
+    Name = "fullbright",
     Callback = function(Callback) 
         print(Callback)
 end})
