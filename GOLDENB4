@@ -1,7 +1,7 @@
-W near for helping me with this code
+--W near for helping me with this code
 shared.RavenB4Started = true -- REQUIRED!!!!!!
 shared.RavenConfigName = 'Golden b4' --Whatever your Config name is!
-shared.WaterMark = "Golden B4ðŸ¤‘"
+shared.WaterMark = "Golden B4Ã°Å¸Â¤â€˜"
 shared.WaterMarkColor = Color3.fromRGB(252,186,3)
 --shared.RavenBlacklist = {"ahsf-ghjfk-ijrh-rtes-3thr"} you have to put a HWID of a player in this Whitelist Table to Whitelist them!
 --shared.RavenWhitelist = {"ahsf-ghjfk-ijrh-rtes-3thr"} you have to put a HWID of a player in this Blacklist Table to blacklist them!
@@ -18,7 +18,7 @@ function IsAlive(plr)
 end
 Godmode = Combat:CreateToggle({
     Name = "Godmode",
-    Callback = function(Callback) 
+    Callback = function(Callback)
         if Callback then
             repeat task.wait()
                 for i, v in pairs(game:GetService("Players"):GetChildren()) do
@@ -69,19 +69,17 @@ Godmode = Combat:CreateToggle({
     end})
 Blatant:CreateToggle({
     Name = "Better Ka",
-    StartingState = false,
     Callback = function(Callback)
+        BetterKillaura = Callback
+        if BetterKillaura then
+            repeat task.wait()
+                --Your code for the Killaura here :)
+            until not BetterKillaura
+        end
 end})
-
 --[[
 Name = 'string' - The name of the tab.
 Callback = 'function' - The function of the button.
 StartingState = 'bool' - Sets the State of the Module (Note that this only works when the Player inject Raven B4 for the FIRST TIME, else the SaveSystem takes over!)
 ]]
-if callback getgenv().killaura = true
-
-while killaura do task.wait()
-pcall( function()
-local args = {
-    [1] = "M1& ...
 shared.RavenB4Completed = true --- REQUIRED!!!!
