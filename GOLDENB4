@@ -67,8 +67,8 @@ Godmode = Combat:CreateToggle({
             until not Callback
         end
     end})
-Module:CreateToggle({
-    Name = "Name",
+Blatant:CreateToggle({
+    Name = "Better Ka",
     StartingState = false,
     Callback = function(Callback)
 end})
