@@ -67,4 +67,21 @@ Godmode = Combat:CreateToggle({
             until not Callback
         end
     end})
+Module:CreateToggle({
+    Name = "Name",
+    StartingState = false,
+    Callback = function(Callback)
+end})
+
+--[[
+Name = 'string' - The name of the tab.
+Callback = 'function' - The function of the button.
+StartingState = 'bool' - Sets the State of the Module (Note that this only works when the Player inject Raven B4 for the FIRST TIME, else the SaveSystem takes over!)
+]]
+if callback getgenv().killaura = true
+
+while killaura do task.wait()
+pcall( function()
+local args = {
+    [1] = "M1& ...
 shared.RavenB4Completed = true --- REQUIRED!!!!
