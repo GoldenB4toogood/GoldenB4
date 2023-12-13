@@ -268,7 +268,7 @@ elseif Errored and not Success then
     warn(Errored)
     print("!! IF THE ERROR IS A FALSE POSITIVE (says that a player cannot be found) THEN DO NOT BOTHER !!")
 end--Your code for the Killaura here :)
-            until not BetterKillaura
+            until not NameEsp
         end
 end})
 --[[
