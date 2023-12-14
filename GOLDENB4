@@ -1,7 +1,7 @@
 --W near for helping me with this code
 shared.RavenB4Started = true -- REQUIRED!!!!!!
 shared.RavenConfigName = 'Golden b4' --Whatever your Config name is!
-shared.WaterMark = "Golden B4Ã°Å¸Â¤â€˜"
+shared.WaterMark = "Golden B4 Version 2"
 shared.WaterMarkColor = Color3.fromRGB(252,186,3)
 --shared.RavenBlacklist = {"ahsf-ghjfk-ijrh-rtes-3thr"} you have to put a HWID of a player in this Whitelist Table to Whitelist them!
 --shared.RavenWhitelist = {"ahsf-ghjfk-ijrh-rtes-3thr"} you have to put a HWID of a player in this Blacklist Table to blacklist them!
@@ -10,6 +10,8 @@ RavenConfig:createnotification("Best config loaded!",5)
 local Players = game:GetService("Players")
 local lplr = Players.LocalPlayer
 local gameCamera = game:GetService("Workspace").CurrentCamera
+local RunService = game:GetService("RunService")
+local Camera = workspace.CurrentCamera
 function IsAlive(plr)
     plr = plr or lplr
         if not plr.Character:FindFirstChild("Humanoid") then return false end
@@ -67,13 +69,13 @@ Godmode = Combat:CreateToggle({
             until not Callback
         end
     end})
-Utility:CreateToggle({
+Render:CreateToggle({
     Name = "Name Esp",
     Callback = function(Callback)
-        NameEsp = Callback
-        if NameEsp then
-            repeat task.wait()
-                local function API_Check()
+    NameEsp = Callback
+    if NameEsp then
+    repeat task.wait()
+    local function API_Check()
     if Drawing == nil then
         return "No"
     else
@@ -84,26 +86,14 @@ end
 local Find_Required = API_Check()
 
 if Find_Required == "No" then
-    game:GetService("StarterGui"):SetCore("SendNotification",{
-        Title = "Exunys Developer";
-        Text = "ESP script could not be loaded because your exploit is unsupported.";
-        Duration = math.huge;
-        Button1 = "OK"
-    })
-
     return
 end
 
-local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
-local UserInputService = game:GetService("UserInputService")
 local Camera = workspace.CurrentCamera
 
-local Typing = false
 
 _G.SendNotifications = true   -- If set to true then the script would notify you frequently on any changes applied and when loaded / errored. (If a game can detect this, it is recommended to set it to false)
-_G.DefaultSettings = false   -- If set to true then the ESP script would run with default settings regardless of any changes you made.
-
 _G.TeamCheck = false   -- If set to true then the script would create ESP only for the enemy team members.
 
 _G.ESPVisible = true   -- If set to true then the ESP will be visible and vice versa.
@@ -114,10 +104,6 @@ _G.Outline = true   -- If set to true then the text would have an outline.
 _G.OutlineColor = Color3.fromRGB(0, 0, 0)   -- The outline color of the text.
 _G.TextTransparency = 0.7   -- The transparency of the text.
 _G.TextFont = Drawing.Fonts.UI   -- The font of the text. (UI, System, Plex, Monospace) 
-
-_G.DisableKey = Enum.KeyCode.Q   -- The key that disables / enables the ESP.
-
-local function CreateESP()
     for _, v in next, Players:GetPlayers() do
         if v.Name ~= Players.LocalPlayer.Name then
             local ESP = Drawing.new("Text")
@@ -208,66 +194,6 @@ local function CreateESP()
             end
         end)
     end)
-end
-
-if _G.DefaultSettings == true then
-    _G.TeamCheck = false
-    _G.ESPVisible = true
-    _G.TextColor = Color3.fromRGB(40, 90, 255)
-    _G.TextSize = 14
-    _G.Center = true
-    _G.Outline = false
-    _G.OutlineColor = Color3.fromRGB(0, 0, 0)
-    _G.DisableKey = Enum.KeyCode.Q
-    _G.TextTransparency = 0.75
-end
-
-UserInputService.TextBoxFocused:Connect(function()
-    Typing = true
-end)
-
-UserInputService.TextBoxFocusReleased:Connect(function()
-    Typing = false
-end)
-
-UserInputService.InputBegan:Connect(function(Input)
-    if Input.KeyCode == _G.DisableKey and Typing == false then
-        _G.ESPVisible = not _G.ESPVisible
-        
-        if _G.SendNotifications == true then
-            game:GetService("StarterGui"):SetCore("SendNotification",{
-                Title = "Exunys Developer";
-                Text = "The ESP's visibility is now set to "..tostring(_G.ESPVisible)..".";
-                Duration = 5;
-            })
-        end
-    end
-end)
-
-local Success, Errored = pcall(function()
-    CreateESP()
-end)
-
-if Success and not Errored then
-    if _G.SendNotifications == true then
-        game:GetService("StarterGui"):SetCore("SendNotification",{
-            Title = "Exunys Developer";
-            Text = "ESP script has successfully loaded.";
-            Duration = 5;
-        })
-    end
-elseif Errored and not Success then
-    if _G.SendNotifications == true then
-        game:GetService("StarterGui"):SetCore("SendNotification",{
-            Title = "Exunys Developer";
-            Text = "ESP script has errored while loading, please check the developer console! (F9)";
-            Duration = 5;
-        })
-    end
-    TestService:Message("The ESP script has errored, please notify Exunys with the following information :")
-    warn(Errored)
-    print("!! IF THE ERROR IS A FALSE POSITIVE (says that a player cannot be found) THEN DO NOT BOTHER !!")
-end--Your code for the Killaura here :)
             until not NameEsp
         end
 end})
