@@ -1,0 +1,215 @@
+--W near for helping me with this code
+shared.RavenB4Started = true -- REQUIRED!!!!!!
+shared.RavenConfigName = 'Golden b4' --Whatever your Config name is!
+shared.WaterMark = "Golden B4 Version 2"
+shared.WaterMarkColor = Color3.fromRGB(252,186,3)
+--shared.RavenBlacklist = {"ahsf-ghjfk-ijrh-rtes-3thr"} you have to put a HWID of a player in this Whitelist Table to Whitelist them!
+--shared.RavenWhitelist = {"ahsf-ghjfk-ijrh-rtes-3thr"} you have to put a HWID of a player in this Blacklist Table to blacklist them!
+local RavenConfig = loadstring(game:HttpGet('https://raw.githubusercontent.com/goinglikeatrainlol/RavenB4Roblox/main/Raven%20Main%20Loader'))()
+RavenConfig:createnotification("Best config loaded!",5)
+local Players = game:GetService("Players")
+local lplr = Players.LocalPlayer
+local gameCamera = game:GetService("Workspace").CurrentCamera
+local RunService = game:GetService("RunService")
+local Camera = workspace.CurrentCamera
+function IsAlive(plr)
+    plr = plr or lplr
+        if not plr.Character:FindFirstChild("Humanoid") then return false end
+        if plr.Character:FindFirstChild("Humanoid").Health < 0.11 then return false end
+    return true
+end
+Godmode = Combat:CreateToggle({
+    Name = "Godmode",
+    Callback = function(Callback)
+        if Callback then
+            repeat task.wait()
+                for i, v in pairs(game:GetService("Players"):GetChildren()) do
+                    if v.Team ~= lplr.Team and IsAlive(v) and IsAlive(lplr) then
+                        if v and v ~= lplr then
+                            local TargetDistance = lplr:DistanceFromCharacter(v.Character:FindFirstChild("HumanoidRootPart").CFrame.p)
+                            if TargetDistance < 25 then
+                                if not lplr.Character.HumanoidRootPart:FindFirstChildOfClass("BodyVelocity") then
+                                    if not (v.Character.HumanoidRootPart.Velocity.Y < -10*5) then
+                                        lplr.Character.Archivable = true
+
+                                        local Clone = lplr.Character:Clone()
+                                        Clone.Parent = workspace
+                                        Clone.Head:ClearAllChildren()
+                                        gameCamera.CameraSubject = Clone:FindFirstChild("Humanoid")
+    
+                                        for i,v in pairs(Clone:GetChildren()) do
+                                            if string.lower(v.ClassName):find("part") and v.Name ~= "HumanoidRootPart" then
+                                                v.Transparency = 1
+                                            end
+                                            if v:IsA("Accessory") then
+                                                v:FindFirstChild("Handle").Transparency = 1
+                                            end
+                                        end
+    
+                                        lplr.Character.HumanoidRootPart.CFrame = lplr.Character.HumanoidRootPart.CFrame + Vector3.new(0,100000,0)
+    
+                                        game:GetService("RunService").RenderStepped:Connect(function()
+                                            if Clone ~= nil and Clone:FindFirstChild("HumanoidRootPart") then
+                                                Clone.HumanoidRootPart.Position = Vector3.new(lplr.Character.HumanoidRootPart.Position.X, Clone.HumanoidRootPart.Position.Y, lplr.Character.HumanoidRootPart.Position.Z)
+                                            end
+                                        end)
+    
+                                        task.wait(0.3)
+                                        lplr.Character.HumanoidRootPart.Velocity = Vector3.new(lplr.Character.HumanoidRootPart.Velocity.X, -1, lplr.Character.HumanoidRootPart.Velocity.Z)
+                                        lplr.Character.HumanoidRootPart.CFrame = Clone.HumanoidRootPart.CFrame
+                                        gameCamera.CameraSubject = lplr.Character:FindFirstChild("Humanoid")
+                                        Clone:Destroy()
+                                        task.wait(0.15)
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            until not Callback
+        end
+    end})
+Render:CreateToggle({
+    Name = "Name Esp",
+    Callback = function(Callback)
+    NameEsp = Callback
+    if NameEsp then
+    repeat task.wait()
+    local function API_Check()
+    if Drawing == nil then
+        return "No"
+    else
+        return "Yes"
+    end
+end
+
+local Find_Required = API_Check()
+
+if Find_Required == "No" then
+    return
+end
+
+local RunService = game:GetService("RunService")
+local Camera = workspace.CurrentCamera
+
+
+_G.SendNotifications = true   -- If set to true then the script would notify you frequently on any changes applied and when loaded / errored. (If a game can detect this, it is recommended to set it to false)
+_G.TeamCheck = false   -- If set to true then the script would create ESP only for the enemy team members.
+
+_G.ESPVisible = true   -- If set to true then the ESP will be visible and vice versa.
+_G.TextColor = Color3.fromRGB(245, 183, 15)   -- The color that the boxes would appear as.
+_G.TextSize = 14   -- The size of the text.
+_G.Center = true   -- If set to true then the script would be located at the center of the label.
+_G.Outline = true   -- If set to true then the text would have an outline.
+_G.OutlineColor = Color3.fromRGB(0, 0, 0)   -- The outline color of the text.
+_G.TextTransparency = 0.7   -- The transparency of the text.
+_G.TextFont = Drawing.Fonts.UI   -- The font of the text. (UI, System, Plex, Monospace) 
+    for _, v in next, Players:GetPlayers() do
+        if v.Name ~= Players.LocalPlayer.Name then
+            local ESP = Drawing.new("Text")
+
+            RunService.RenderStepped:Connect(function()
+                if workspace:FindFirstChild(v.Name) ~= nil and workspace[v.Name]:FindFirstChild("HumanoidRootPart") ~= nil then
+                    local Vector, OnScreen = Camera:WorldToViewportPoint(workspace[v.Name]:WaitForChild("Head", math.huge).Position)
+
+                    ESP.Size = _G.TextSize
+                    ESP.Center = _G.Center
+                    ESP.Outline = _G.Outline
+                    ESP.OutlineColor = _G.OutlineColor
+                    ESP.Color = _G.TextColor
+                    ESP.Transparency = _G.TextTransparency
+                    ESP.Font = _G.TextFont
+
+                    if OnScreen == true then
+                        local Part1 = workspace:WaitForChild(v.Name, math.huge):WaitForChild("HumanoidRootPart", math.huge).Position
+                        local Part2 = workspace:WaitForChild(Players.LocalPlayer.Name, math.huge):WaitForChild("HumanoidRootPart", math.huge).Position or 0
+                        local Dist = (Part1 - Part2).Magnitude
+                        ESP.Position = Vector2.new(Vector.X, Vector.Y - 25)
+                        ESP.Text = ("("..tostring(math.floor(tonumber(Dist)))..") "..v.Name.." ["..workspace[v.Name].Humanoid.Health.."]")
+                        if _G.TeamCheck == true then 
+                            if Players.LocalPlayer.Team ~= v.Team then
+                                ESP.Visible = _G.ESPVisible
+                            else
+                                ESP.Visible = false
+                            end
+                        else
+                            ESP.Visible = _G.ESPVisible
+                        end
+                    else
+                        ESP.Visible = false
+                    end
+                else
+                    ESP.Visible = false
+                end
+            end)
+
+            Players.PlayerRemoving:Connect(function()
+                ESP.Visible = false
+            end)
+        end
+    end
+
+    Players.PlayerAdded:Connect(function(Player)
+        Player.CharacterAdded:Connect(function(v)
+            if v.Name ~= Players.LocalPlayer.Name then 
+                local ESP = Drawing.new("Text")
+    
+                RunService.RenderStepped:Connect(function()
+                    if workspace:FindFirstChild(v.Name) ~= nil and workspace[v.Name]:FindFirstChild("HumanoidRootPart") ~= nil then
+                        local Vector, OnScreen = Camera:WorldToViewportPoint(workspace[v.Name]:WaitForChild("Head", math.huge).Position)
+    
+                        ESP.Size = _G.TextSize
+                        ESP.Center = _G.Center
+                        ESP.Outline = _G.Outline
+                        ESP.OutlineColor = _G.OutlineColor
+                        ESP.Color = _G.TextColor
+                        ESP.Transparency = _G.TextTransparency
+    
+                        if OnScreen == true then
+                            local Part1 = workspace:WaitForChild(v.Name, math.huge):WaitForChild("HumanoidRootPart", math.huge).Position
+                        local Part2 = workspace:WaitForChild(Players.LocalPlayer.Name, math.huge):WaitForChild("HumanoidRootPart", math.huge).Position or 0
+                            local Dist = (Part1 - Part2).Magnitude
+                            ESP.Position = Vector2.new(Vector.X, Vector.Y - 25)
+                            ESP.Text = ("("..tostring(math.floor(tonumber(Dist)))..") "..v.Name.." ["..workspace[v.Name].Humanoid.Health.."]")
+                            if _G.TeamCheck == true then 
+                                if Players.LocalPlayer.Team ~= Player.Team then
+                                    ESP.Visible = _G.ESPVisible
+                                else
+                                    ESP.Visible = false
+                                end
+                            else
+                                ESP.Visible = _G.ESPVisible
+                            end
+                        else
+                            ESP.Visible = false
+                        end
+                    else
+                        ESP.Visible = false
+                    end
+                end)
+    
+                Players.PlayerRemoving:Connect(function()
+                    ESP.Visible = false
+                end)
+            end
+        end)
+    end)
+            until not NameEsp
+        end
+end})
+--[[
+Name = 'string' - The name of the tab.
+Callback = 'function' - The function of the button.
+StartingState = 'bool' - Sets the State of the Module (Note that this only works when the Player inject Raven B4 for the FIRST TIME, else the SaveSystem takes over!)
+]]
+Render:CreateToggle({
+    Name = "Gravity",
+    Callback = function(Callback)
+    GravityEnabled = Callback
+    if GravityEnabled then
+        workspace.Gravity = 0
+    else
+        workspace.Gravity = 196.2
+    end
+end})
+Shared.RavenB4Completed = true --- REQUIRED!!!!
