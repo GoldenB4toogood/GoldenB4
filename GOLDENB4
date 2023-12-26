@@ -1,7 +1,7 @@
 --W near for helping me with this code
 shared.RavenB4Started = true -- REQUIRED!!!!!!
 shared.RavenConfigName = 'AlsploitIsTrash' --Whatever your Config name is!
-shared.WaterMark = "Golden B4 Version 2"
+shared.WaterMark = "AlsploitIsASkid 🤣"
 shared.WaterMarkColor = Color3.fromRGB(252,186,3)
 --shared.RavenBlacklist = {"ahsf-ghjfk-ijrh-rtes-3thr"} you have to put a HWID of a player in this Whitelist Table to Whitelist them!
 --shared.RavenWhitelist = {"ahsf-ghjfk-ijrh-rtes-3thr"} you have to put a HWID of a player in this Blacklist Table to blacklist them!
